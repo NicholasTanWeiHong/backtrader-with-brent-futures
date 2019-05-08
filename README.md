@@ -12,7 +12,7 @@ The current implementation of this project is separated into two main functional
 
 ### Backtest Visualization
 
-To perform a simple analysis using one of the pre-packaged strategies, simply edit:
+To perform a simple analysis using one of the pre-packaged strategies, simply edit in ``visualize_bt.py``:
 
 ```python
 import extensions.strategies as st
@@ -20,15 +20,17 @@ import extensions.strategies as st
 cerebro.addstrategy(st.RSIMeanReversionSystem)
 ```
 
-Then run:
+Then, in Terminal, run:
 
-``python visualize_bt.py``
+```python
+python visualize_bt.py
+```
 
 This returns a terminal output of P&L generated over a stipulated timeframe alongside the packaged backtrader plot.
 
 ### Backtest Optimization
 
-To optimize parameters within an existing strategy, first edit:
+To optimize parameters within an existing strategy, first edit in ``optimize_bt.py``:
 
 ```python
 cerebro.optstrategy(
@@ -38,15 +40,17 @@ cerebro.optstrategy(
     )
 ```
 
-Then run:
+Then run the following in Terminal:
 
-``python optimize_bt.py``
+```python
+python optimize_bt.py
+```
 
-This prints a series of simulations for the parameter under analysis and their corresponding final portfolio values.
+This prints a series of simulations for the parameter(s) under analysis alongside their corresponding final portfolio values.
 
 ## Future Plans (Ordered By Priority)
 
 * Add to the set of strategies based on new ideas from fundamental research
-* Include a plotting functionality for optimizations runs (i.e. Parameter Value against P&L)
-* Tinker with 'sizers' to execute based on various risk portfolios
-* Tinker with 'queries' to experiment with more unconvential commodity datasets
+* Include a plotting functionality for optimizations runs (i.e. Plotting Parameter Values against P&L)
+* Tinker with 'extensions.sizers' to execute based on various risk portfolios
+* Tinker with 'extensions.queries' to experiment with more unconvential commodity datasets
