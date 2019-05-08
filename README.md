@@ -6,21 +6,39 @@ The following is a simple backtesting framework for Brent Crude Oil Futures writ
 
 ## Description
 
-This project sources historical data on Brent Crude Oil futures from [Quandl](https://www.quandl.com/data/CHRIS-Wiki-Continuous-Futures) and backtests several algorithmic trading strategies using the backtrader library. It currently ships with three strategies: ``SmaCrossoverStrategy``, ``RSIMeanReversionSystem`` and ``ThreeSoldiersAndCrows``, which were variously inspired by examples from the [backtrader documentation](https://www.backtrader.com/), [backtest-rookies.com](https://backtest-rookies.com/), as well as my own experiences in technical analysis.
+This project queries historical data for Brent Crude Oil futures from [Quandl](https://www.quandl.com/data/CHRIS-Wiki-Continuous-Futures) and backtests several algorithmic trading strategies using the backtrader library. It currently ships with three strategies: ``SmaCrossoverStrategy``, ``RSIMeanReversionSystem`` and ``ThreeSoldiersAndCrows``, which were variously inspired by examples from the [backtrader documentation series](https://www.backtrader.com/), [backtest-rookies.com](https://backtest-rookies.com/), as well as my own experiences in technical analysis.
 
 The current implementation of this project is separated into two main functionalities: ``visualize_bt.py`` and ``optimize_bt.py``.
 
 ### Backtest Visualization
 
-To perform a simple analysis of a strategy, simply run:
+To perform a simple analysis using one of the pre-packaged strategies, simply edit:
+
+```python
+import extensions.strategies as st
+
+cerebro.addstrategy(st.RSIMeanReversionSystem)
+```
+
+Then run:
 
 ``python visualize_bt.py``
 
-This returns a terminal output of P&L generated over the stipulated timeframe alongside the packaged backtrader plot.
+This returns a terminal output of P&L generated over a stipulated timeframe alongside the packaged backtrader plot.
 
 ### Backtest Optimization
 
-To optimize parameters within an existing strategy, run:
+To optimize parameters within an existing strategy, first edit:
+
+```python
+cerebro.optstrategy(
+        st.SmaCrossoverStrategy,
+        sma1_period=range(10, 21),
+        opt_mode=True
+    )
+```
+
+Then run:
 
 ``python optimize_bt.py``
 
