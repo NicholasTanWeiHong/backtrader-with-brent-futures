@@ -1,4 +1,4 @@
-# Backtrader Framework for Quandl Futures
+# Backtrader Framework for Brent Crude Oil Futures
 
 The following is a simple backtesting framework for Brent Crude Oil Futures written with the [backtrader](https://github.com/backtrader/backtrader) library.
 
