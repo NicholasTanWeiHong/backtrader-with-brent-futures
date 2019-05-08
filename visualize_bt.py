@@ -1,31 +1,11 @@
 import backtrader as bt
 import extensions.strategies as st
 import extensions.sizers as sz
-
+import extensions.queries as qs
 import datetime as dt
-import quandl
-
-my_quandl_key = open("quandlapikey.txt", "r").read()
-quandl.ApiConfig.api_key = my_quandl_key
-
-
-def import_quandl_futures(quandl_code):
-
-    # Query continuous futures data from the Quandl API
-    df = quandl.get(quandl_code)
-
-    # Preprocess the pandas DataFrame to accommodate backtrader PandasData feed
-    df.rename(columns={
-        'Settle': 'Close',
-        'Prev. Day Open Interest': 'OpenInterest'},
-        inplace=True)
-    df = df[['Open', 'High', 'Low', 'Close', 'Volume', 'OpenInterest']]
-
-    return df
 
 
 if __name__ == '__main__':
-
     # Instantiate a Cerebro class
     cerebro = bt.Cerebro()
 
@@ -33,17 +13,20 @@ if __name__ == '__main__':
     cerebro.addstrategy(st.RSIMeanReversionSystem)
 
     # Query historical Brent Crude Oil data from Quandl for backtesting
-    brent = import_quandl_futures('CHRIS/ICE_B1')
+    brent = qs.import_quandl_futures('CHRIS/ICE_B1')
+
+    # Specify the backtest timeframe from '01/01/2018' to '01/01/2019'
     data = bt.feeds.PandasData(
         dataname=brent,
-        fromdate=dt.datetime(2018, 1, 1),
-        todate=dt.datetime.now())
+        fromdate=dt.datetime(2016, 1, 1),
+        todate=dt.datetime(2019, 1, 1)
+    )
 
     # Add the data feed to Cerebro
     cerebro.adddata(data)
 
-    # Set starting cash as $100,000
-    starting_cash = 100_000
+    # Set starting cash as $10,000
+    starting_cash = 10_000
     cerebro.broker.setcash(starting_cash)
     print(f'Starting Portfolio Value: ${round(cerebro.broker.getvalue(), 2)}')
 
@@ -61,4 +44,4 @@ if __name__ == '__main__':
     print(f'Total P&L: ${round(cerebro.broker.getvalue() - starting_cash, 2)}')
 
     # Plot the results of the backtest
-    cerebro.plot()
+    cerebro.plot(style='candlestick')

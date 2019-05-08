@@ -1,5 +1,5 @@
 # Ignore folder named '.vscode'
 .vscode/
 
-# Ignore the Quandl API Key file
+# Ignore the Quandl API Key text file
 quandlapikey.txt
