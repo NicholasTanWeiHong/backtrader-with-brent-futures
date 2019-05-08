@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # Instantiate a Cerebro class
     cerebro = bt.Cerebro()
 
-    # Add a strategy to Cerebro
+    # Add a strategy to Cerebro from the strategies module
     cerebro.addstrategy(st.RSIMeanReversionSystem)
 
     # Query historical Brent Crude Oil data from Quandl for backtesting
