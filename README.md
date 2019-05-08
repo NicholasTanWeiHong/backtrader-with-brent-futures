@@ -52,5 +52,6 @@ This prints a series of simulations for the parameter(s) under analysis alongsid
 
 * Add to the set of strategies based on new ideas from fundamental research
 * Include a plotting functionality for optimizations runs (i.e. Plotting Parameter Values against P&L)
+* Analyze the potential of implementing the framework for live trading with OANDA or Interactive Brokers
 * Tinker with 'extensions.sizers' to execute based on various risk portfolios
 * Tinker with 'extensions.queries' to experiment with more unconvential commodity datasets
