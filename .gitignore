@@ -1,2 +1,5 @@
 # Ignore folder named '.vscode'
 .vscode/
+
+# Ignore quandlapikey.txt
+.quandlapikey.txt
